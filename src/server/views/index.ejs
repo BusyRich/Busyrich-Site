@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Busyrich</title>
+  <!--[if IE]>
+    <link rel="stylesheet" href="/css/bundle.ie.css"/>
+    <script src="/js/html5shiv.min.js"></script>
+  <!--[if !IE]><!-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://c.bsy.bz/bss/v1.1/bss.min.css"/>
+    <link rel="stylesheet" href="/css/bundle.css"/>
+  <!--<![endif]-->  
+</head>
+<body>
+  <div id="container">
+    <section id="social">
+      <img id="logo" src="/img/logo.png"/>
+      <% social.forEach(function(link) { %>
+        <a href="<%= link.url %>" title="<%= link.title %>" target="_blank"><i class="<%= link.icon %>"></i></a>
+      <% }); %>
+    </section>
+    
+    <section id="navigation">
+      <h2>Navigation</h2>
+      <% if(latest.length) { %>
+        <h3>Latest Posts</h3>
+        <div class="navLinks">
+          <% latest.forEach(post => { %>
+            <a href="/post/<%= post.slug %>" class="file-link <%= %>">
+              <i class="fas fa-file icon-file"></i><span><%= post.title %></span>
+            </a>
+          <% }); %>
+        </div>
+      <% } %>
+      <h3>Pages</h3>
+      <div class="navLinks">
+        <% for(page in pages) { %>
+          <% if(pages[page].display !== false) { %>
+            <a href="/<%= pages[page].slug %>" class="file-link <%= (pages[page].slug === currentPage.slug ? 'open' : '') %>">
+              <i class="fas fa-file icon-file"></i><span><%= pages[page].title %></span>
+            </a>
+          <% } %>
+        <% }; %>
+      </div>
+    </section>
+    
+    <section id="main">
+      <ul id="tabs">
+        <li class="active file-link" data-tab="<%= currentPage.slug %>">
+          <i class="fas fa-file icon-file"></i><span><%= currentPage.slug %></span><a style="display:none;" href="#<%= currentPage.slug %>" class="close-tab">X</a>
+        </li>
+      </ul>
+      <div id="content">
+        <div class="active" id="tab-<%= currentPage.slug %>">
+          <% if(currentPage.file) { %>
+            <%- include(currentPage.file) %>
+          <% } else { %>
+            <%- currentPage.content %>
+          <% } %>
+        </div>
+      </div>
+    </section>
+  </div>
+  <footer>
+    <div id="footerLeft">
+      <div class="padded">
+        <% social.forEach(function(link) { 
+            if(link.count) { %>
+          <i class="<%= link.icon %>"></i> <span><%= link.count %></span>
+        <% }}); %>
+      </div>
+    </div>
+    <div id="footerRight">
+      <div class="padded">&copy; 2018 Richard Key</div>
+    </div>
+  </footer>
+  <script type="text/javascript" src="/js/bundle.js"></script>
+</body>
+</html>

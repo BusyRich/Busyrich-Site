@@ -1,0 +1,58 @@
+@import "animations";
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+#container {
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 1;
+}
+
+#social {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#navigation {
+  flex-shrink: 0;
+}
+
+#main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+#main #tabs {
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+}
+
+#main #tabs li {
+  white-space: nowrap;
+  overflow: hidden;
+  animation: slidein 0.5s linear;
+  transition: background-color 0.25s;
+}
+
+#main #content {
+  flex-grow: 1;
+
+  .active {
+    animation: softenter 0.25s linear;
+  }
+}
+
+footer {
+  display: flex;
+  flex-direction: row;
+
+  > div {
+    flex-grow: 1;
+  }
+}

@@ -1,0 +1,6 @@
+{"_id":{"$oid":"5b497410718441b9fd063da4"},"title":"This Is Post One","content":"Uh, stuff goes here.","author":"Busyrich","posted":{"$date":{"$numberLong":"1531540800000"}},"slug":"first-post"}
+{"_id":{"$oid":"5b5d1b99c98e472d9d933260"},"title":"This Is Post Two","content":"Uh, stuff goes here.","author":"Busyrich","posted":{"$date":{"$numberLong":"1521864000000"}},"slug":"second-post"}
+{"_id":{"$oid":"5b5d1c9ac98e472d9d933261"},"title":"This Is Post Three","content":"Uh, stuff goes here.","author":"Busyrich","posted":{"$date":{"$numberLong":"1529294400000"}},"slug":"third-post"}
+{"_id":{"$oid":"5b5d1ebbc98e472d9d933262"},"title":"This Is Post Four","content":"Uh, stuff goes here.","author":"Busyrich","posted":{"$date":{"$numberLong":"1532145600000"}},"slug":"fourth-post"}
+{"_id":{"$oid":"5b5d1f65c98e472d9d933263"},"title":"This Is Post Five","content":"Uh, stuff goes here.","author":"Busyrich","posted":{"$date":{"$numberLong":"1526875200000"}},"slug":"fifth-post"}
+{"_id":{"$oid":"5b5d2119c98e472d9d933264"},"title":"This Is Post Six","content":"Uh, stuff goes here.","author":"Busyrich","posted":{"$date":{"$numberLong":"1522814400000"}},"slug":"sixth-post"}

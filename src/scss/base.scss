@@ -1,0 +1,178 @@
+html, body, #container {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  color: #EAEAEA;
+  font-family: 'Source Code Pro', monospace, Arial;
+  font-size: 12px;
+  background: #141411;
+}
+
+#container > section {
+  position: relative;
+  height: 100%;
+  z-index: 2;
+}
+
+p {
+  margin-bottom: 2em;
+  line-height: 1.5em;
+}
+
+a {
+  color: #ABABAB;
+  text-decoration: none;
+  transition: color 0.5s;
+}
+
+a:hover {
+  color: #EAEAEA;
+}
+
+#content {
+  letter-spacing: 1px;
+}
+
+.file-link span {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+#logo {
+  width: 36px;
+  margin-top: 6px;
+}
+
+#social {
+  font-size: 24px;
+  text-align: center;
+  background: #1F1F1A;
+}
+
+#social a {
+  padding: 10px;
+  text-decoration: none;
+}
+
+#navigation {
+  width: 200px;
+  background: #141411;
+
+  h2, h3 {
+    color: #EAEAEA;
+    font-size: 0.8em;
+    text-transform: uppercase;
+  }
+}
+
+#navigation h2 {
+  margin: 0;
+  padding: 1.4em;
+}
+
+#navigation h3 {
+  margin: 0;
+  padding: 6px 8px;
+  font-weight: bold;
+  background: #1F1F1A;
+}
+
+#navigation .navLinks {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.1em;
+
+  a {
+    padding: 0.5em 1em;
+
+    &:hover {
+      background-color: #2E2E26;
+    }
+  }
+}
+
+#main {
+  background: #1F1F1A;
+}
+
+#main #tabs {
+  list-style: none;
+  background: #141411;
+}
+
+#main #tabs li {
+  padding: 1em;
+  padding-right: 20px;
+  color: #ABABAB;
+  background: #2E2E26;
+  border-right: 1px solid #1F1F1A;
+  cursor: pointer;
+}
+
+#main #tabs li.active {
+  color: #EAEAEA;
+  background: #1F1F1A;
+}
+
+#main #tabs li .close-tab {
+  display: inline-block;
+  margin-left: 1em;
+  visibility: hidden;
+}
+
+#main #tabs li:hover .close-tab {
+  visibility: visible;
+}
+
+#main #content {
+  max-width: 700px;
+  padding: 20px;
+  overflow: auto;
+  border-right: 1px solid #2E2E26;
+  background: #1F1F1A;
+
+  h1, h2, h3 {  
+    &::before,
+    &::after {
+      color: #ABABAB;
+      content: "{";
+    }
+  
+    &::after {
+      content: "}";
+    }
+  }
+
+  h1 {
+    &::before,
+    &::after {
+      color: #EAEAEA;
+    }
+  }
+}
+
+#main #content > div {
+  display: none;
+  margin-bottom: 40px;
+}
+
+#main #content > div.active {
+  display: block;
+}
+
+footer {
+  background: #2E2E26;
+
+  .padded {
+    padding: 10px;
+  }
+
+  #footerRight {
+    text-align: right;
+  }
+}
+
+/* Page-specific styles */
+@import 'pages/projects';

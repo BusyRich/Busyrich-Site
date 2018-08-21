@@ -1,0 +1,12 @@
+<h1><%= currentPage.title %></h1>
+<ul id="projects">
+  <% currentPage.projects.forEach(function(project) { %>
+    <li style="width: 48%; margin: 1%;">
+      <figure style="background: url('http://placehold.it/500x500') no-repeat center center; height: 175px;">
+        <figcaption><%= project.name %></figcaption>
+      </figure>
+      <a href="#">{More Information}</a>
+      <p class="more">Occaecat dolore irure eiusmod deserunt. Quis do consequat incididunt occaecat reprehenderit dolore eiusmod esse magna. Ex ea non non veniam. Aute eiusmod eiusmod fugiat duis non et est magna. Qui id incididunt culpa quis cillum Lorem aliqua do aliquip. Proident eiusmod aute tempor magna reprehenderit nisi. Eiusmod sit consequat aliquip consectetur consequat pariatur incididunt.</p>
+    </li>
+  <% }); %>
+</ul>
