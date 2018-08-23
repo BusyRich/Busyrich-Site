@@ -1,7 +1,4 @@
 var bsy = {
-  bindLinks: function() {
-    
-  },
   selectTab: function(target) {
     var id = target.currentTarget || target;
 
@@ -19,7 +16,7 @@ var bsy = {
         slug = target.attr('href').substring(1);
 
     $('#tabs li[data-tab="' + slug + '"], #tab-' + slug).remove();
-    $('#pageLinks a[href="/' + slug + '"]').removeClass('open');
+    $('a[href="/' + slug + '"]').removeClass('open');
   },
   addTab: function(tab) {
     var li = $('<li/>', {
@@ -49,12 +46,7 @@ var bsy = {
     
     bsy.selectTab(tab.slug);
   },
-  openPage: function(evt) {
-    evt.preventDefault();
-
-    var target = $(evt.currentTarget);
-        slug = target.attr('href');
-
+  loadPage: function(target, slug) {
     if(target.hasClass('open')) {
       bsy.selectTab(slug.substring(1));
     } else {
@@ -66,6 +58,35 @@ var bsy = {
         target.addClass('open');
       });
     }
+  },
+  openPage: function(evt) {
+    evt.preventDefault();
+
+    var target = $(evt.currentTarget);
+    bsy.loadPage(target, target.attr('href'));
+  },
+  filterCommands: function(filter) {
+    $('#commandOptions li')
+      .hide()
+      .removeClass('selected')
+      .filter(function() {
+        return $(this).text().toLowerCase().indexOf(filter.toLowerCase()) >= 0;
+      })
+      .show()
+      .first()
+      .addClass('selected');
+  },
+  stopTextboxButtons: function(evt) {
+    if((evt.which >= 37 && evt.which <= 40) || evt.which === 13) {
+      return evt.preventDefault();
+    }
+
+    return true;
+  },
+  hideToolsPalette: function() {
+    var toolsPalette = $('#commandPalette');
+    toolsPalette.find('input').val('');
+    toolsPalette.hide();
   }
 };
 
@@ -73,4 +94,58 @@ $(document).ready(function() {
   $('#tabs li').click(bsy.selectTab);
   $('#tabs li .close-tab').click(bsy.closeTab).show();
   $('.navLinks a').click(bsy.openPage);
+
+  $('#commandInput input').keyup(function(evt) {
+    if(!bsy.stopTextboxButtons(evt)) {
+      return evt.preventDefault();
+    }
+
+    bsy.filterCommands(this.value);
+  }).keydown(bsy.stopTextboxButtons);
+
+  document.onkeyup = function(evt) {
+    if(evt.key === "Escape") {
+      bsy.hideToolsPalette();
+      return evt.preventDefault();
+    }
+
+    var toolsPalette = $('#commandPalette');
+
+    if(evt.altKey && evt.shiftKey && evt.key.toLowerCase() === "p") {
+      toolsPalette.toggle();
+      
+      var input = toolsPalette.find('input');
+      if(toolsPalette.is(':visible')) {
+        input.focus();
+      } else {
+        input.val('');
+      }
+      
+      return evt.preventDefault();
+    }
+
+    if(!toolsPalette.is(':visible')) {
+      return;
+    }
+  
+    var selected = toolsPalette.find('.selected'),
+        next = selected.nextAll(':visible').first(),
+        prev = selected.prevAll(':visible').first();
+    
+    if(evt.key === "Enter") {
+      var link = selected.find('a');
+      bsy.loadPage(link, link.attr('href'));
+      bsy.hideToolsPalette();
+    }
+  
+    if(evt.key === "ArrowDown" && next.is('li')) {
+      selected.removeClass('selected');
+      next.addClass('selected');
+    } else if(evt.key === "ArrowUp" && prev.is('li')) {
+      selected.removeClass('selected');
+      prev.addClass('selected');
+    }
+  
+    evt.preventDefault();
+  };
 });

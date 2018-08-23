@@ -54,6 +54,14 @@
         </li>
       </ul>
       <div id="content">
+        <div id="commandPalette" class="bg-abyss bo-smoke">
+          <div id="commandInput" class="bg-abyss">
+            <input type="text" class="tx-abyss bg-smoke"/>
+          </div>
+          <ul id="commandOptions" class="bg-abyss">
+            <li><a href="/design">Busyrich Design Document</a></li>
+          </ul>
+        </div>
         <div class="active" id="tab-<%= currentPage.slug %>">
           <% if(currentPage.file) { %>
             <%- include(currentPage.file) %>
