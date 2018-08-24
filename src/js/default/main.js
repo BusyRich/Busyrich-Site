@@ -103,7 +103,7 @@ $(document).ready(function() {
     bsy.filterCommands(this.value);
   }).keydown(bsy.stopTextboxButtons);
 
-  document.onkeyup = function(evt) {
+  document.onkeydown = function(evt) {
     if(evt.key === "Escape") {
       bsy.hideToolsPalette();
       return evt.preventDefault();
@@ -111,7 +111,7 @@ $(document).ready(function() {
 
     var toolsPalette = $('#commandPalette');
 
-    if(evt.altKey && evt.shiftKey && evt.key.toLowerCase() === "p") {
+    if((evt.altKey || evt.metaKey) && evt.shiftKey && evt.key.toLowerCase() === "p") {
       toolsPalette.toggle();
       
       var input = toolsPalette.find('input');
